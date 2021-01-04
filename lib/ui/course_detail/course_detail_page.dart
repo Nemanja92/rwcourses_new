@@ -15,7 +15,7 @@ class CourseDetailsPage extends StatelessWidget {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          _buildImage(),
+          _buildBanner(),
           _buildMain(context),
           _buildDetails(context),
         ],
@@ -23,10 +23,14 @@ class CourseDetailsPage extends StatelessWidget {
     );
   }
 
-  Widget _buildImage() {
-    return ImageContainer(
-      height: 200,
-      url: course.artworkUrl,
+  Widget _buildBanner() {
+    return Hero(
+      tag: "cardArtwork-${course.courseId}",
+      transitionOnUserGestures: true,
+      child: ImageContainer(
+        height: 200,
+        url: course.artworkUrl,
+      ),
     );
   }
 
