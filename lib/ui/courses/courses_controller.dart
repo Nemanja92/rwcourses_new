@@ -1,5 +1,4 @@
 import 'package:rwcourses/model/course.dart';
-import 'package:rwcourses/repository/course_repository.dart';
 import 'package:rwcourses/repository/repository.dart';
 
 class CoursesController {
