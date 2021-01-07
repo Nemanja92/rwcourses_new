@@ -12,7 +12,7 @@ class CourseRepository implements Repository {
   @override
   Future<List<Course>> getCourses(int domainFilter) async {
     var courses = <Course>[];
-
+    print("data fetched nemanja");
     var url = dataURL;
 
     if (domainFilter != Constants.allFilter) {
