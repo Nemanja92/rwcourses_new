@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:rwcourses/model/course.dart';
 import 'package:rwcourses/ui/course_detail/image_container.dart';
 import 'package:rwcourses/utils/string_extensions.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class CourseDetailsPage extends StatelessWidget {
   final Course course;
@@ -15,15 +16,23 @@ class CourseDetailsPage extends StatelessWidget {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          _buildBanner(),
+          _buildImage(),
           _buildMain(context),
           _buildDetails(context),
+          FlatButton(
+            child: Text("View Course"),
+            onPressed: () => _launchCourse(course.courseId),
+          ),
         ],
       ),
     );
   }
 
-  Widget _buildBanner() {
+  void _launchCourse(String courseId) {
+    launch("https://raywenderlich.com/$courseId");
+  }
+
+  Widget _buildImage() {
     return Hero(
       tag: "cardArtwork-${course.courseId}",
       transitionOnUserGestures: true,
@@ -42,7 +51,7 @@ class CourseDetailsPage extends StatelessWidget {
         children: <Widget>[
           Text(
             course.name,
-            style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+            style: Theme.of(context).textTheme.subtitle2.copyWith(fontSize: 24),
           ),
           Text(
             course.description,
